@@ -6,18 +6,16 @@ import consts
 location = None
 
 
-def test_internet_connection(host='http://google.com'):
+def check_for_internet_connection(host='http://google.com'):
 
     try:
         urllib.request.urlopen(host)
-        print(consts.INTERNET_CONNECTION_OK_MESSEGE)
         return True
     except:
-        print(consts.INTERNET_CONNECTION_FAIL_MESSEGE)
         return False
 
 
-def user_location(params):
+def get_user_location():
 
     response = requests.get(consts.WEB_FOR_CITY)
     data = response.json()
@@ -29,7 +27,6 @@ def weather_by_location_json(params):
 
     api_result = requests.get(consts.WEB_FOR_WEATHER, params)
     api_response = api_result.json()
-    print(api_response)
     return api_response
 
 

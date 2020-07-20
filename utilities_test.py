@@ -4,7 +4,7 @@ import unittest
 import utilities
 
 
-class Testrequests_utilities(unittest.TestCase):
+class TestUtilities(unittest.TestCase):
 
     def setUp(self):
         self.weather_dict = {
