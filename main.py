@@ -19,7 +19,7 @@ if __name__ == '__main__':
         user_input_utilities.choose_diffrent_city(params)
         api_response = requests_utilities.weather_by_location_json(params)
         weather_dict = requests_utilities.get_info_from_json(api_response, weather_dict)
-        weather_dict['currnet_desc'] = utilities.change_desc_to_alphabet_only(weather_dict['currnet_desc'])
+        weather_dict['current_desc'] = utilities.change_desc_to_alphabet_only(weather_dict['current_desc'])
         weather_dict = utilities.visibility_scale_to_desc(weather_dict)
         print(utilities.make_string_for_weather(weather_dict))
     else:

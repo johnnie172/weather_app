@@ -28,7 +28,7 @@ def make_string_for_weather(weather_dict):
 
     time = weather_dict['local_time']
     city = weather_dict['city_name']
-    desc = weather_dict['currnet_desc']
+    desc = weather_dict['current_desc']
     temp = weather_dict['current_temp']
     hum = weather_dict['current_humidity']
     vis = weather_dict['current_visibility']
