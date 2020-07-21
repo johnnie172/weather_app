@@ -1,6 +1,6 @@
 
 
-def visibility_scale_to_desc(weather_dict):
+def visibility_scale_to_desc(current_visibility_int):
 
     current_visibility_dict = {
         0 : 'Dense fog', 1 : 'Thick fog',
@@ -9,9 +9,10 @@ def visibility_scale_to_desc(weather_dict):
         6 : 'Moderate', 7 : 'Good',
         8 : 'Very good', 9 : 'Exceptional', 10 : 'Exceptional'
     }
-    key = weather_dict['current_visibility']
-    weather_dict['current_visibility'] = current_visibility_dict[key]
-    return weather_dict
+
+    current_visibility_str = current_visibility_dict[current_visibility_int]
+
+    return current_visibility_str
 
 
 def change_desc_to_alphabet_only(desc_string):

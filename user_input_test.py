@@ -1,21 +1,20 @@
+
+
 import unittest
 import mock
 import user_input_utilities
-import main
+import consts
+
 
 class TestInputUtilities(unittest.TestCase):
 
     def setUp(self):
-        self.params = {
-            'access_key': 'e4eb60681cb3f243e72cafc0fd07df97',
-            'query': 'new york'
-        }
+        self.city = 'Tel Aviv'
 
-    def test_choose_diffrent_city(self):
-
+    def test_choose_diffrent_city_no_differense(self):
         with mock.patch('builtins.input', return_value="no"):
-            self.assertEqual(user_input_utilities.choose_diffrent_city(self.params),\
-                             {'access_key': 'e4eb60681cb3f243e72cafc0fd07df97', 'query': 'new york'})
-        with mock.patch('builtins.input', return_value="TEL AVIV"):
-            self.assertEqual(user_input_utilities.choose_diffrent_city(self.params),\
-                             {'access_key': 'e4eb60681cb3f243e72cafc0fd07df97', 'query': 'Tel Aviv'})
+            self.assertEqual(user_input_utilities.choose_diffrent_city(self.city), 'Tel Aviv')
+
+    def test_choose_diffrent_city_with_changes(self):
+        with mock.patch('builtins.input', return_value="delhi"):
+            self.assertEqual(user_input_utilities.choose_diffrent_city(self.city), 'Delhi')

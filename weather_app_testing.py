@@ -13,6 +13,7 @@ def suite():
     test_suite.addTest(unittest.makeSuite(user_input_test.TestInputUtilities))
     test_suite.addTest(unittest.makeSuite(requests_utilities_test.TestRequestsUtilities))
     test_suite.addTest(unittest.makeSuite(utilities_test.TestUtilities))
+
     return test_suite
 
 mySuit=suite()

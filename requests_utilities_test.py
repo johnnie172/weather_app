@@ -1,6 +1,7 @@
 
 import unittest
 import requests_utilities
+import consts
 
 
 class TestRequestsUtilities(unittest.TestCase):
@@ -9,7 +10,7 @@ class TestRequestsUtilities(unittest.TestCase):
 
         self.weather_dict = {
             'city_name': 'Tel Aviv-Yafo', 'local_time': '2020-07-19 13:47',\
-            'current_temp': 30, 'currnet_desc': 'Sunny', 'current_humidity': 59,\
+            'current_temp': 30, 'current_desc': 'Sunny', 'current_humidity': 59,\
             'current_visibility': 7
         }
         self.weather_json_tlv = {
@@ -35,22 +36,12 @@ class TestRequestsUtilities(unittest.TestCase):
                          'uv_index': 1, 'visibility': 4, 'is_day': 'no'}
         }
 
-        self.params = {
-            'access_key': 'e4eb60681cb3f243e72cafc0fd07df97',
-            'query': 'new york'
-        }
 
-        self.tlv_params = {
-            'access_key': 'e4eb60681cb3f243e72cafc0fd07df97',
-            'query': 'tel aviv'
-        }
+        self.city_tlv = 'Tel Aviv'
 
-        self.delhi_params = {
-            'access_key': 'e4eb60681cb3f243e72cafc0fd07df97',
-            'query': 'delhi'
-        }
+        self.city_delhi = 'Delhi'
 
-    def test_test_internet_connection(self):
+    def test_check_for_internet_connection(self):
         self.assertEqual(requests_utilities.check_for_internet_connection(), True)
         self.assertEqual(requests_utilities.check_for_internet_connection('http://gggvvddbfbt.co'), False)
 
@@ -58,12 +49,16 @@ class TestRequestsUtilities(unittest.TestCase):
         #todo test with fake ip
         pass
 
-    def test_weather_by_location_json(self):
-
-        tlv_json = requests_utilities.weather_by_location_json(self.tlv_params)
-        delhi_json = requests_utilities.weather_by_location_json(self.delhi_params)
+    def test_get_weather_by_location_json(self):
+        tlv_json = requests_utilities.get_weather_by_location_json(self.city_tlv)
+        delhi_json = requests_utilities.get_weather_by_location_json(self.city_delhi)
         self.assertEqual(tlv_json['location']['name'], self.weather_json_tlv['location']['name'])
         self.assertEqual(delhi_json['location']['name'], self.weather_json_delhi['location']['name'])
 
+
     def test_get_info_from_json(self):
-        pass
+        self.assertEqual(requests_utilities.get_info_from_json(self.weather_json_delhi)['city_name'], 'Delhi')
+        self.assertEqual(requests_utilities.get_info_from_json(self.weather_json_tlv)['city_name'],\
+                         self.weather_dict['city_name'])
+        self.assertEqual(len(requests_utilities.get_info_from_json(self.weather_json_delhi)), 6)
+        self.assertEqual(len(requests_utilities.get_info_from_json(self.weather_json_tlv)), 6)

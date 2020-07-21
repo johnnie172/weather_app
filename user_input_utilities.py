@@ -1,9 +1,9 @@
 
 
-def choose_diffrent_city(params):
+def choose_diffrent_city(city):
 
-    answer = input('the current city is {}, would you like to choose another city? (enter "NO" or the city name): '.format(params['query']))
+    answer = input('the current city is {}, would you like to choose another city? (enter "NO" or the city name): '.format(city))
     if answer.lower() != 'no':
-        params['query'] = str(answer.title())
+        city = str(answer.title())
 
-    return params
+    return city

@@ -4,13 +4,12 @@ import urllib
 import requests
 import consts
 
-location = None
 
 
 def check_for_internet_connection(host='http://google.com'):
-#todo multiprocess for time out
+
     try:
-        urllib.request.urlopen(host)
+        urllib.request.urlopen(host, timeout=2)
         return True
     except:
         return False
@@ -25,16 +24,21 @@ def get_user_location():
     return city
 
 
-def weather_by_location_json(params):
+def get_weather_by_location_json(city):
 
+    params = {
+        'access_key': consts.ACCESS_KEY,
+        'query': city
+    }
     api_result = requests.get(consts.WEB_FOR_WEATHER, params)
     api_response = api_result.json()
 
     return api_response
 
 
-def get_info_from_json(api_response, weather_dict):
+def get_info_from_json(api_response):
 
+    weather_dict = {}
     location = api_response['location']
     weather_dict['city_name'] = location['name']
     weather_dict['local_time'] = location['localtime']
