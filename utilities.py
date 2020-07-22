@@ -17,10 +17,10 @@ def visibility_scale_to_desc(current_visibility_int):
 
 def change_desc_to_alphabet_only(desc_string):
 
-    new_desc = ""
-    for letter in desc_string:
-        if letter.isalpha():
-            new_desc += letter
+    new_desc = ''
+    for string in desc_string:
+        new_desc += string
+    new_desc.strip("'")
 
     return new_desc
 

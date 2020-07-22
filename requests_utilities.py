@@ -33,6 +33,9 @@ def get_weather_by_location_json(city):
     api_result = requests.get(consts.WEB_FOR_WEATHER, params)
     api_response = api_result.json()
 
+    if 'request' not in api_response:
+        raise Exception('Sorry, we could not get the information, please try again.')
+
     return api_response
 
 

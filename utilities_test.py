@@ -19,9 +19,10 @@ class TestUtilities(unittest.TestCase):
         self.assertEqual(utilities.visibility_scale_to_desc(8), 'Very good')
 
     def test_change_desc_to_alphabet_only(self):
-        self.assertEqual(utilities.change_desc_to_alphabet_only('[Sunny]'), 'Sunny')
-        self.assertEqual(utilities.change_desc_to_alphabet_only('[-=]'), '')
-        self.assertEqual(utilities.change_desc_to_alphabet_only('Good'), 'Good')
+        self.assertEqual(utilities.change_desc_to_alphabet_only(['Sunny']), 'Sunny')
+        self.assertEqual(utilities.change_desc_to_alphabet_only(['']), '')
+        self.assertEqual(utilities.change_desc_to_alphabet_only(['Mist, Rain With Thunderstorm']),\
+                         'Mist, Rain With Thunderstorm')
 
     def test_make_string_for_weather(self):
         self.assertEqual(utilities.make_string_for_weather(self.weather_dict),\
