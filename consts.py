@@ -1,7 +1,7 @@
-
+import os
 
 WEB_FOR_CITY = 'https://ipinfo.io/'
-WEB_FOR_WEATHER = 'http://api.weatherstack.com/current'
+WEB_FOR_WEATHER = os.environ.get('WEATHER_KEY')
 
 ACCESS_KEY = 'e4eb60681cb3f243e72cafc0fd07df97'
 
